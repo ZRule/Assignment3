@@ -1,5 +1,6 @@
 <html>
 	<head>
+	<meta charset="UTF-8">
 		<script>
 		
 		
@@ -10,56 +11,103 @@
 	
 	<body>
 	
-	<script>
+    <script>
+    var appointmentArr = new Array();
+    var priorityArr = new Array();
+    var subjectArr = new Array();
+    var venueArr = new Array();
+    var dateArr = new Array();
+    var startArr = new Array();
+    var endArr = new Array();
+    var i = 0;
+    
+    function addAppointment(){
+      appointmentArr.push(appointmentArr.length);
+      if (document.getElementById('radioOne').checked)
+        { priorityArr.push('High');
+        }
+       else
+        { priorityArr.push('Low');
+        }
+      subjectArr.push(document.getElementById('subject').value);
+      venueArr.push(document.getElementById('venue').value);
+      dateArr.push(document.getElementById('date').value);
+      startArr.push(document.getElementById('startTime').value);
+      endArr.push(document.getElementById('endTime').value)
+      return
+    }
 	
-	</script>
+    </script>
 	
 	<div align="middle" >
-	<h1 align="middle">Personal Diary</h1>
-	<p />
-	Priority:
-	<input type="radio" id="radioOne" name="priority" />High
-	<input type="radio" id="radioTwo" name="priority" />Low
-	<p />
-	Subject:
-	<input type="text"  id="subject" size="50" value="subject" />
-	<p />
-	Venue:
-	<input type="text" id="venue" size="50" />
-	<p />
-	Date:
-	<input type="text" id="date" size="10" />
-	Start Time
-	<select id="startTime">
-		<option value="1">0800</option>
-		<option value="2">0900</option>
-		<option value="3">1000</option>
-		<option value="4">1100</option>
-		<option value="5">1200</option>
-		<option value="6">1300</option>
-		<option value="7">1400</option>
-		<option value="8">1500</option>
-		<option value="9">1600</option>
-		<option value="10">1700</option>
-		<option value="11">1800</option>
-	</select>
-	End Time
-	<select id="endTime">
-		<option value="1">0800</option>
-		<option value="2">0900</option>
-		<option value="3">1000</option>
-		<option value="4">1100</option>
-		<option value="5">1200</option>
-		<option value="6">1300</option>
-		<option value="7">1400</option>
-		<option value="8">1500</option>
-		<option value="9">1600</option>
-		<option value="10">1700</option>
-		<option value="11">1800</option>
-	</select>
-	<p />
-	<input type="button" value="Add Appointment" onclick="alert('no \'onclick\' function')"/>
+    <h1 align="middle">Personal Diary</h1>
+    <p />
+    Priority:
+    <input type="radio" id="radioOne" name="priority" />High
+    <input type="radio" id="radioTwo" name="priority" />Low
+    <p />
+    Subject:
+    <input type="text"  id="subject" size="50" value="subject" />
+    <p />
+    Venue:
+    <input type="text" id="venue" size="50" />
+    <p />
+    Date:
+    <input type="text" id="date" size="10" />
+    Start Time
+    <select id="startTime">
+      <option value="8">0800</option>
+      <option value="9">0900</option>
+      <option value="10">1000</option>
+      <option value="11">1100</option>
+      <option value="12">1200</option>
+      <option value="13">1300</option>
+      <option value="14">1400</option>
+      <option value="15">1500</option>
+      <option value="16">1600</option>
+      <option value="17">1700</option>
+      <option value="18">1800</option>
+    </select>
+    End Time
+    <select id="endTime">
+      <option value="8">0800</option>
+      <option value="9">0900</option>
+      <option value="10">1000</option>
+      <option value="11">1100</option>
+      <option value="12">1200</option>
+      <option value="13">1300</option>
+      <option value="14">1400</option>
+      <option value="15">1500</option>
+      <option value="16">1600</option>
+      <option value="17">1700</option>
+      <option value="18">1800</option>
+    </select>
+    <p />
+    <input type="button" value="Add Appointment" onclick="addAppointment()"/>
+    <hr />
 	</div>
-	<hr />
+	<div>
+    <table border="1">
+    <tr>
+    <th>Priority</th>
+    <th>Date</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Subject</th>
+    <th>Venue</th>
+    </tr>
+    </table>
+    <input type="button" value="Randomise Appointments" onclick="addAppointment()"/>
+    <input type="button" value="Sort Appointments" onclick="addAppointment()"/>
+    by <select id="sort">
+      <option value="priority">Priority</option>
+      <option value="date">Date</option>
+      <option value="start">Start</option>
+      <option value="end">End</option>
+      <option value="subject">Subject</option>
+      <option value="venue">Venue</option>
+     </select>
+    <hr />
+	</div>
 	</body>
 </html>
