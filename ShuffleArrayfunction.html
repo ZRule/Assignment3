@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+            <title> shuffle</title>
+            <script>
+
+            
+            var appointmentArr = [0,1,2,3,4,5,6,7,8,9,10];
+
+            //appointmentArr.push(prompt("0,1,2,3,4,5,6"));
+            
+            alert(appointmentArr);
+
+            shuffleAppointments()
+
+            function shuffleAppointments() {
+	        
+                var i = 0;
+                var j = 0;
+                temp = null;
+
+                for (i = appointmentArr.length - 1; i > 0; i -= 1) {
+                j = Math.floor(Math.random() * (i + 1))
+                temp = appointmentArr[i]
+                appointmentArr[i] = appointmentArr[j]
+                appointmentArr[j] = temp
+                } 
+            }
+            alert(appointmentArr);
+
+            </script>
+    </head>
+</html>
