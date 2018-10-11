@@ -4,6 +4,8 @@
             <title> ASSIGNMENT 3 TIME FUNCTION </title>
                 <script>
                 
+                    
+                
                 isValidTime();
 
                 alert(endTime);
@@ -11,40 +13,52 @@
 
                 
                 function isValidTime(){
-                
+    
                     const TIMEARRAY = [8,9,10,11,12,13,14,15,16,17,18]
                     
                     var startTime = "";
                     var endTime = "";
-
-
-                        get_time(0);
                     
-                        while ((TIMEARRAY.indexOf(startTime)  == -1) || (TIMEARRAY.indexOf(endTime) == -1) || (startTime > endTime) 
+                    startTime = parseInt(prompt("enter a start time", "08"));
+                    endTime = parseInt(prompt("enter an end time", "18"));
+                        //get_time(0);
+                    
+                        if ((TIMEARRAY.indexOf(startTime)  == -1) || (TIMEARRAY.indexOf(endTime) == -1) || (startTime > endTime) 
                         || (endTime < startTime)) {
-                            get_time(1);
+                            alert("Invalid Date");
+                            return false;
+                        }else{
+                            return true;
                         }
+                        
                     
 //  this is a function to enter the time, not needed eventually
 
+                       // function get_time(wrong) {
+                       //     if (wrong == 1){
+                       //         alert("wrong time")
+                       //     }else (wrong == 0)
+                        
+                      //  }
 
-                        function get_time(reenter) {
-                            if (reenter ==1) { 
-                                alert("The times are incorrect")
-                                startTime = parseInt(prompt("enter start time", "0800")/100);
-                                endTime = parseInt(prompt("enter end time", "1800")/100);
-                            }else {
-                                startTime = parseInt(prompt("enter start time", "0800")/100);
-                                endTime = parseInt(prompt("enter end time", "1800")/100);
-                            }   
+
+                      //  function get_time(reenter) {
+                     //       if (reenter ==1) { 
+                     //           alert("The times are incorrect")
+                      //          startTime = parseInt(prompt("enter start time", "0800")/100);
+                      //          endTime = parseInt(prompt("enter end time", "1800")/100);
+                     //       }else {
+                     //           startTime = parseInt(prompt("enter start time", "0800")/100);
+                     //           endTime = parseInt(prompt("enter end time", "1800")/100);
+                     //       }   
                                
-                            while ((TIMEARRAY.indexOf(startTime)  == -1) || (TIMEARRAY.indexOf(endTime) == -1) || 
-                            (startTime > endTime) || (endTime < startTime)) {
-                                get_time(1);
+                     //       while ((TIMEARRAY.indexOf(startTime)  == -1) || (TIMEARRAY.indexOf(endTime) == -1) || 
+                      //      (startTime > endTime) || (endTime < startTime)) {
+                       //         get_time(1);
                             
-                            }
+                        //    }
 
-                        }
+                      //  }
                     //return ((endTime) & (startTime));
                 }
                 </script>
