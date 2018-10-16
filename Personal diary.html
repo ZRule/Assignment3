@@ -16,12 +16,14 @@
     var priorityArr = new Array();
     var subjectArr = new Array();
     var venueArr = new Array();
-    var dateArr = new Array();
+    //var dateArr = new Array();
     var startArr = new Array();
     var endArr = new Array();
     var i = 0;
+    var rightDateArr = new Array();
     
     function addAppointment(){
+      isValidDate()
       appointmentArr.push(appointmentArr.length);
       if (document.getElementById('radioOne').checked)
         { priorityArr.push('High');
@@ -31,11 +33,65 @@
         }
       subjectArr.push(document.getElementById('subject').value);
       venueArr.push(document.getElementById('venue').value);
-      dateArr.push(document.getElementById('date').value);
+      rightDateArr.push(document.getElementById('date').value);
       startArr.push(document.getElementById('startTime').value);
       endArr.push(document.getElementById('endTime').value)
+      showAppointments()
       return
     }
+    function shuffleAppointments() {
+	        
+                var i = 0;
+                var j = 0;
+                temp = null;
+                for (i = appointmentArr.length - 1; i > 0; i -= 1) {
+                j = Math.floor(Math.random() * (i + 1))
+                temp = appointmentArr[i]
+                appointmentArr[i] = appointmentArr[j]
+                appointmentArr[j] = temp
+                } 
+                
+            }
+     function isValidDate()  {
+                    const CORRECTMONTH = [1,2,3,4,5,6,7,8,9,10,11,12]
+                    const SMALLMONTH = [4,6,9,11]
+                    const BIGMONTH = [1,3,5,7,8,10,12]
+                    
+                    var dateArr = new Array();
+                    var rightDate = "";
+                    var correctDate = 0;
+                    var daysInMonth = 0 ;
+                    var month = 0 ;
+                    var day = 0 ;
+                    var year = 0 ;
+                    var getDate = "";
+                    //var moreDate = true;
+                    //while (moreDate) {
+                        getDate = document.getElementById('date').value;
+                        dateArr = getDate.split("/");
+                    if ((CORRECTMONTH.indexOf(parseInt(dateArr[1]))) == -1 || (SMALLMONTH.indexOf(parseInt(dateArr[1])) && (parseInt(dateArr[0]) > 30)) 
+                        || (BIGMONTH.indexOf(parseInt(dateArr[1])) && (parseInt(dateArr[0]) > 31)) || 
+                        ((parseInt(dateArr[2]) % 4 == 0) && (parseInt(dateArr[0]) > 29 )) || ((parseInt(dateArr[2]) % 4 != 0) && (parseInt(dateArr[0]) > 28)) 
+                        || ((parseInt(dateArr[2]) % 100 == 0) && (parseInt(dateArr[0]) > 28)) || (parseInt(dateArr[2]) < 1583)) {
+                            alert("please enter a correct date");    
+                        }
+                        else{
+                        rightDateArr.push(rightDate)
+                        }
+                        //moreDate = confirm("would you like to add another date?");
+                    //}
+                //return rightDateArr;            
+                }
+            /*function prompt_for_date(reenter) {
+                        if (reenter == 1){
+                            rightDate = alert("please enter a correct date");
+                        }else {
+                            rightDate = document.getElementById('date').value;
+                        }
+                        dateArr = rightDate.split("/");
+                        return (dateArr);
+            }        
+            //alert(rightDateArr);*/
 	
     </script>
 	
@@ -43,7 +99,7 @@
     <h1 align="middle">Personal Diary</h1>
     <p />
     Priority:
-    <input type="radio" id="radioOne" name="priority" />High
+    <input type="radio" id="radioOne" name="priority" checked/>High
     <input type="radio" id="radioTwo" name="priority" />Low
     <p />
     Subject:
@@ -87,7 +143,8 @@
     <hr />
 	</div>
 	<div>
-    <table border="1">
+	
+    <table id="appTable" border="1">
     <tr>
     <th>Priority</th>
     <th>Date</th>
@@ -97,7 +154,7 @@
     <th>Venue</th>
     </tr>
     </table>
-    <input type="button" value="Randomise Appointments" onclick="addAppointment()"/>
+    <input type="button" value="Randomise Appointments" onclick="shuffleAppointments()"/>
     <input type="button" value="Sort Appointments" onclick="addAppointment()"/>
     by <select id="sort">
       <option value="priority">Priority</option>
@@ -108,6 +165,26 @@
       <option value="venue">Venue</option>
      </select>
     <hr />
+    <script>
+    function showAppointments(){
+      var table = document.getElementById("appTable");
+      var row = table.insertRow(1);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      var cell5 = row.insertCell(4);
+      var cell6 = row.insertCell(5);
+      for (i=0;i<appointmentArr.length;i++){
+        cell1.innerHTML = priorityArr[i];
+        cell2.innerHTML = rightDateArr[i];
+        cell3.innerHTML = startArr[i];
+        cell4.innerHTML = endArr[i];
+        cell5.innerHTML = subjectArr[i];
+        cell6.innerHTML = venueArr[i];
+      }
+    }
+	</script>
 	</div>
 	</body>
 </html>
