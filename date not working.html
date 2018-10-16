@@ -92,6 +92,20 @@
                         return (dateArr);
             }        
             //alert(rightDateArr);*/
+            function isValidTime(){
+                    
+                    var startTime = "";
+                    var endTime = "";
+                    
+                    startTime = parseInt(document.getElementById('start').value);
+                    endTime = parseInt(prompt(document.getElementById('end').value);
+                    
+                        if ((startTime > endTime) || (endTime < startTime)) {
+                            alert("Invalid Time");
+                            return false;
+                        }else{
+                            return true;
+                        }
 	
     </script>
 	
