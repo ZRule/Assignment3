@@ -1,0 +1,193 @@
+<html>
+	<head>
+	<title>CSC1401_Personal Diary</title>
+		<script>
+		
+		function isConcurrentAppointment(array){
+			var i;
+			var j;
+			var dateArray = new Array();
+			var startArray = new Array();
+			var endArray = new Array();
+			
+			j=0;
+			for(i=3; i<array.length; i+=6){
+				dateArray[j] = array[i];
+				j++
+			}
+			
+			j=0;
+			for(i=4; i<array.length; i+=6){
+				startArray[j] = array[i];
+				j++
+			}
+			
+			j=0;
+			for(i=5; i<array.length; i+=6){
+				endArray[j] = array[i];
+				j++
+			}
+			
+			if(array.length>6){
+				for(i=0; i<dateArray.length-1; i++){
+					if(document.getElementById('startTime').value===dateArray[i]){
+						if(document.getElementById('endTime').value>startArray[i]){
+							alert('error: concurrent dates');
+							return false;
+						}
+					}
+				j++
+				}
+			}
+		return true;
+		}
+		
+		</script>
+	</head>
+	
+	<body>
+	
+	<div align="middle" >
+	<h1 align="middle">Personal Diary</h1>
+	<p />
+	Priority:
+	<input type="radio" id="radioOne" name="priority" />High
+	<input type="radio" id="radioTwo" name="priority" />Low
+	<p />
+	Subject:
+	<input type="text"  id="subject" size="50" />
+	<p />
+	Venue:
+	<input type="text" id="venue" size="50" />
+	<p />
+	Date:
+	<input type="text" id="date" size="10" value="DD/MM/YYYY" />
+	Start Time
+	<select id="startTime">
+		<option value="1">0800</option>
+		<option value="2">0900</option>
+		<option value="3">1000</option>
+		<option value="4">1100</option>
+		<option value="5">1200</option>
+		<option value="6">1300</option>
+		<option value="7">1400</option>
+		<option value="8">1500</option>
+		<option value="9">1600</option>
+		<option value="10">1700</option>
+		<option value="11">1800</option>
+	</select>
+	End Time
+	<select id="endTime">
+		<option value="1">0800</option>
+		<option value="2">0900</option>
+		<option value="3">1000</option>
+		<option value="4">1100</option>
+		<option value="5">1200</option>
+		<option value="6">1300</option>
+		<option value="7">1400</option>
+		<option value="8">1500</option>
+		<option value="9">1600</option>
+		<option value="10">1700</option>
+		<option value="11">1800</option>
+	</select>
+	<p />
+	<input type="button" value="Add Appointment" onclick=""/>
+	</div>
+	<hr />
+	
+	<div align="middle">
+	<p />
+	<script>
+	
+	</script>
+	
+	</div>	
+	
+	<div align="middle">
+	<p />
+	<script>
+	
+	function tallyAppointments(array){
+		const MILLISECONDS_IN_DAY = (1000*60*60*24);
+		var i;
+		var j;
+		var temp;
+		var differenceInDays;
+		var min;
+		var max;
+		var tallyTable = '';
+		var tally = new Array();
+		var allDates = new Array();
+		var dayDate = new Array();
+		
+		for(i=3; i<array.length; i+=6){
+			allDates[i] = array[i];
+		}
+		
+		for(i=0; i<allDates.length; i++){
+			dayDate[i] = Math.floor(allDates[i].getTime()/MILLISECONDS_IN_DAY);
+		}
+		
+		for(i=0; i<dayDate.length-1; i++){
+			for(j=0; j<dayDate.length-1; j++){
+				if(dayDate[j] > dayDate[j+1]){
+					temp = dayDate[j];
+					dayDate[j] = dayDate[j+1];
+					dayDate[j+1] = temp;
+				}
+			}
+		}
+		
+		min = dayDate[0];
+		max = dayDate[dayDate.length-1];
+		
+		differenceInDays = dayDate[dayDate.length-1] - dayDate[0]; //6
+		
+		for(i=min; i<=max; i++){
+			tally[i] = 0;
+		}
+		
+		for(i=0; i<differenceInDays; i++){
+			tally[dayDate[i]]++;
+		}
+		
+		tallyTable += '<table border="1">';
+		tallyTable += '<tr><th>Date</th><th>Appointment</th></tr>';
+			for(i=0; i<tally.length; i++){
+				if(tally[i]!=undefined && tally[i]!=0){
+					tallyTable += '<tr><td>' + i + '</td><td>';
+					tallyTable += tally[i] + '</td></tr>';	
+				}
+			}
+		tallyTable += '</table>';
+		
+		
+	return document.writeln(tallyTable);
+	}
+	
+	</script>
+	<input type="button" value="Summary" onclick="tallyAppointments(appointmentArr)"/>
+	<p />
+	</div>
+	<hr />
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</body>
+</html>
