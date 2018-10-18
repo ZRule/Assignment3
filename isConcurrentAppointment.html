@@ -1,0 +1,22 @@
+
+<html>
+<body>
+<script>
+function isConcurrentAppointment(){
+		
+		for(i=0; i<rightDateArr.length; i++){
+			if(document.getElementById('date').value==rightDateArr[i]){
+				if((document.getElementById('startTime').value>startArr[i] && document.getElementById('startTime').value>=endArr[i] && document.getElementById('endTime').value>startArr[i] && document.getElementById('endTime').value>endArr[i] && startArr[i]!=document.getElementById('startTime').value && document.getElementById('endTime').value!=endArr[i]) || 
+				(document.getElementById('startTime').value<startArr[i] && document.getElementById('startTime').value<endArr[i] && document.getElementById('endTime').value<=startArr[i] && document.getElementById('endTime').value<endArr[i] && startArr[i]!=document.getElementById('startTime').value && document.getElementById('endTime').value!=endArr[i])){
+					
+				}else{
+					alert('concurrent appointments');
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+</script>
+</body>
+</html>
