@@ -68,7 +68,6 @@
                     
                     getDate = input;
                     dateArr = getDate.split("/");
-                    alert (dateArr);
                     if ((CORRECTMONTH.indexOf(parseInt(dateArr[1]))) == -1 || (SMALLMONTH.indexOf(parseInt(dateArr[1])) && (parseInt(dateArr[0]) > 30)) 
                         || (BIGMONTH.indexOf(parseInt(dateArr[1])) && (parseInt(dateArr[0]) > 31)) || 
                         ((parseInt(dateArr[2]) % 4 == 0) && (parseInt(dateArr[0]) > 29 )) || ((parseInt(dateArr[2]) % 4 != 0) && (parseInt(dateArr[0]) > 28)) 
@@ -78,7 +77,6 @@
                             return false   
                         }
                         else{
-                        rightDateArr.push(input);
                         return true
                         }
                        }
